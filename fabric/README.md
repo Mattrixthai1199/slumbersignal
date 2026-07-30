@@ -1,19 +1,8 @@
 # SlumberSignal
 
-Client-side mod for **Minecraft 26.1.2**. It tells you the exact moment the Overworld night becomes dark enough to use a bed, with a deliberately over-animated notification.
+Client-side Fabric mod for **Minecraft 26.1.2**. It tells you the exact moment the Overworld night becomes dark enough to use a bed, with a deliberately over-animated notification.
 
 `you can sleep now.`
-
-## Repository Structure
-
-```
-slumbersignal/
-  fabric/   Fabric Loader source code
-  forge/    NeoForge source code
-  README.md (this file)
-```
-
-Each subdirectory contains a complete, self-contained project that can be built independently.
 
 ## Features
 
@@ -28,25 +17,20 @@ Each subdirectory contains a complete, self-contained project that can be built 
 | 7 | 17 bundled images (icon, cover, banner, plate, wordmark, moon, bed, Zzz, sparkle sheet, glow, ring, shine, stars, vignette, splash strip) |
 | 8 | **No config file is ever created** — all state is in memory |
 
+Client only: `"environment": "client"`, no server entrypoint, no packets, no mixins.
+
 ## Build
 
 ```bash
-# Fabric
-cd fabric
-./gradlew build
-# -> build/libs/slumbersignal-<version>.jar
-
-# Forge
-cd forge
 ./gradlew build
 # -> build/libs/slumbersignal-<version>.jar
 ```
 
-Both require **JDK 25**.
+Requires **JDK 25**.
 
 ## Version Scheme
 
-`MAJOR.MINOR.PATCH+mc<minecraft_version>` — the version lives only in `gradle.properties` (`mod_version`); the mod metadata file picks it up through `${version}`.
+`MAJOR.MINOR.PATCH+mc<minecraft_version>` — the version lives only in `gradle.properties` (`mod_version`); `fabric.mod.json` picks it up through `${version}`.
 
 | Component | When to increment | Notes |
 |-----------|-------------------|-------|
@@ -57,7 +41,7 @@ Both require **JDK 25**.
 
 Only one position is incremented per release, matching the **biggest change** in that release. If a release contains both bug fixes and new features, only **MINOR** is incremented — a new feature always outranks a bug fix.
 
-## Layout (both loaders share the same structure)
+## Layout
 
 ```
 src/main/java/com/slumbersignal/
@@ -73,9 +57,9 @@ src/main/java/com/slumbersignal/
 
 | | |
 |---|---|
+| **Mod Loader** | Fabric |
 | **Minecraft** | 26.1.2 |
-| **Fabric Dependencies** | Fabric API, Fabric Loader (>= 0.19.3) |
-| **Forge Dependencies** | NeoForge |
+| **Dependencies** | Fabric API, Fabric Loader (>= 0.19.3) |
 | **License** | MIT |
 | **Environment** | Client only |
 
