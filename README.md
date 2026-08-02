@@ -9,7 +9,7 @@ Client-side mod for **Minecraft 26.1.2**. It tells you the exact moment the Over
 ```
 slumbersignal/
   fabric/   Fabric Loader source code
-  forge/    NeoForge source code
+  forge/    Forge source code
   README.md (this file)
 ```
 
