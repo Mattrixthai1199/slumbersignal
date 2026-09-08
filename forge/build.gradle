@@ -1,0 +1,84 @@
+plugins {
+	id 'java'
+	id 'net.minecraftforge.gradle' version '[7.0.17,8)'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+// Mojang ships Java 25 with 26.1+, so the mod targets Java 25.
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
+
+minecraft {
+	runs {
+		configureEach {
+			workingDir = layout.projectDirectory.dir('run')
+			systemProperty 'eventbus.api.strictRuntimeChecks', 'true'
+		}
+
+		register('client')
+	}
+}
+
+repositories {
+	minecraft.mavenizer(it)
+	maven fg.forgeMaven
+	maven fg.minecraftLibsMaven
+	mavenCentral()
+}
+
+dependencies {
+	implementation minecraft.dependency("net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}")
+}
+
+processResources {
+	def props = [
+			version              : project.version,
+			minecraft_version_range: project.minecraft_version_range,
+			forge_version_range  : project.forge_version_range,
+			loader_version_range : project.loader_version_range
+	]
+	inputs.properties props
+
+	filesMatching('META-INF/mods.toml') {
+		expand props
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+	it.options.encoding = 'UTF-8'
+}
+
+java {
+	withSourcesJar()
+}
+
+jar {
+	from('LICENSE') {
+		rename { "${it}_${project.base.archivesName.get()}" }
+	}
+
+	manifest {
+		attributes([
+				'Specification-Title'     : project.archives_base_name,
+				'Specification-Vendor'    : 'SlumberSignal',
+				'Specification-Version'   : '1',
+				'Implementation-Title'    : project.archives_base_name,
+				'Implementation-Version'  : project.version,
+				'Implementation-Vendor'   : 'SlumberSignal'
+		])
+	}
+}
+
+// Prints the compile classpath so the exact 26.1.2 API surface can be inspected.
+tasks.register('printClasspath') {
+	def cp = sourceSets.main.compileClasspath
+	doLast {
+		cp.each { println it }
+	}
+}
