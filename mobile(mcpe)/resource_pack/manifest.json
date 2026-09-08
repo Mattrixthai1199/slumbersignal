@@ -1,0 +1,22 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "SlumberSignal 1.0.3+mc26.40 Resources",
+    "description": "ทรัพยากรภาพและไอคอนของ SlumberSignal",
+    "uuid": "4b7ac4a2-8f77-41b4-98cc-8a4d7b63f2e1",
+    "version": [1, 0, 3],
+    "min_engine_version": [1, 26, 40]
+  },
+  "modules": [
+    {
+      "description": "SlumberSignal resource module",
+      "type": "resources",
+      "uuid": "c1d328e6-5f8b-49f3-8b54-786ae8d5f90d",
+      "version": [1, 0, 3]
+    }
+  ],
+  "metadata": {
+    "authors": ["SlumberSignal"],
+    "license": "MIT"
+  }
+}

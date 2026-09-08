@@ -1,0 +1,40 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "SlumberSignal 1.0.3+mc26.40",
+    "description": "แจ้งเตือนเมื่อกลางคืนมืดพอที่จะนอนได้ ทำงานครั้งเดียวต่อคืนด้วย Bedrock Script API",
+    "uuid": "8f4cdb7e-7a2c-4c08-8b9d-f5f0a6b1c223",
+    "version": [1, 0, 3],
+    "min_engine_version": [1, 26, 40]
+  },
+  "modules": [
+    {
+      "description": "SlumberSignal data and Script API module",
+      "type": "data",
+      "uuid": "d40fae58-7cc6-4b79-9e5c-0cc6f5cfd1d9",
+      "version": [1, 0, 3]
+    },
+    {
+      "description": "SlumberSignal Script API entry point",
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "e9af0e9b-46ec-4d1f-bc81-10db096b774f",
+      "version": [1, 0, 3]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "4b7ac4a2-8f77-41b4-98cc-8a4d7b63f2e1",
+      "version": [1, 0, 3]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.8.0"
+    }
+  ],
+  "metadata": {
+    "authors": ["SlumberSignal"],
+    "license": "MIT"
+  }
+}
